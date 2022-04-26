@@ -15,4 +15,8 @@
     <ProjectReference Include="..\SampleMinimal.Infra\SampleMinimal.Infra.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="MapProfiles\" />
+  </ItemGroup>
+
 </Project>
