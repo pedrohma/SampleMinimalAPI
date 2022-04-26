@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.OpenApi.Models;
 using SampleMinimal.API.MapProfiles;
+using SampleMinimal.API.Middleware;
 
 Log.Logger = new LoggerConfiguration()
     .WriteTo.Console()
@@ -45,6 +46,11 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseSerilogRequestLogging();
+
+// Global error handler
+app.UseMiddleware<ErrorHandlerMiddleware>();
 
 app.MapGet("/todo", async (IRepository<Todo> _todoRepository, ILoggerFactory _loggerFactory, IMapper _mapper) =>
 {
