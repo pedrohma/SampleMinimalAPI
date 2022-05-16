@@ -29,6 +29,8 @@ var mappingConfig = new MapperConfiguration(mc =>
     mc.AddProfile(new TodoProfile());
 });
 
+mappingConfig.AssertConfigurationIsValid();
+
 IMapper autoMapper = mappingConfig.CreateMapper();
 
 // Add Services
@@ -56,7 +58,7 @@ app.MapGet("/todo", async (IRepository<Todo> _todoRepository, ILoggerFactory _lo
 {
     var logger = _loggerFactory.CreateLogger<Todo>();
     logger.LogInformation("Getting all Todo items");
-    return Results.Ok(_mapper.Map<TodoDTO>(await _todoRepository.GetAllAsync()));
+    return Results.Ok(_mapper.Map<IEnumerable<TodoDTO>>(await _todoRepository.GetAllAsync()));
 }).WithName("GetAll");
 
 app.MapGet("/todo/{id}", async (int id, IRepository<Todo> _todoRepository, ILoggerFactory _loggerFactory, IMapper _mapper) =>

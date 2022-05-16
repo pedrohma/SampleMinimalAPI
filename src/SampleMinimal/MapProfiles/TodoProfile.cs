@@ -4,7 +4,7 @@
     {
         public TodoProfile()
         {
-            CreateMap<Todo, TodoProfile>().ReverseMap();
+            CreateMap<Todo, TodoDTO>().ReverseMap();
         }
     }
 }

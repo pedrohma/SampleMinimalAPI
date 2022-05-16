@@ -26,7 +26,7 @@ namespace SampleMinimal.API.Middleware
             {
                 string errorMessage = $"The following error occured: {error.Message}";
                 _logger.LogError(errorMessage);
-                await _emailService.SendEmailAsync("yun@portj2.com", "TrailerMonitor Error", errorMessage);
+                await _emailService.SendEmailAsync("pedro@testapps.com", "MinimalAPI Error", errorMessage);
                 var response = context.Response;
                 response.ContentType = "application/json";
 
